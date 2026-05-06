@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Authentication and identifier details for a user",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "mobile": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin", "superadmin"] },
+        "isVerified": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "role"]
+    },
+    "Profile": {
+      "title": "Profile",
+      "description": "Detailed matrimonial profile",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "fullName": { "type": "string" },
+        "age": { "type": "integer" },
+        "gender": { "type": "string", "enum": ["male", "female"] },
+        "height": { "type": "string" },
+        "maritalStatus": { "type": "string", "enum": ["unmarried", "divorced", "widowed"] },
+        "religion": { "type": "string" },
+        "caste": { "type": "string" },
+        "motherTongue": { "type": "string" },
+        "educationLevel": { "type": "string" },
+        "educationField": { "type": "string" },
+        "occupation": { "type": "string" },
+        "income": { "type": "number" },
+        "familyDetails": { "type": "string" },
+        "aboutMe": { "type": "string" },
+        "photos": { "type": "array" },
+        "interests": { "type": "array" },
+        "natureType": { "type": "array" },
+        "completeness": { "type": "integer" },
+        "isFeatured": { "type": "boolean" },
+        "isApproved": { "type": "boolean" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Interest": {
+      "title": "Interest",
+      "description": "Interest interaction between two users",
+      "type": "object",
+      "properties": {
+        "fromUserId": { "type": "string" },
+        "toUserId": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "accepted", "declined"] },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    },
+    "MembershipPlan": {
+      "title": "Membership Plan",
+      "description": "Subscription plans available",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "price": { "type": "number" },
+        "durationDays": { "type": "integer" },
+        "features": { "type": "array" }
+      }
+    }
+  },
+  "firestore": {
+    "users": {
+      "schema": "User",
+      "description": "Collection of user auth metadata"
+    },
+    "profiles": {
+      "schema": "Profile",
+      "description": "Collection of public/private profiles"
+    },
+    "interests": {
+      "schema": "Interest",
+      "description": "Collection of interest requests"
+    },
+    "membership_plans": {
+      "schema": "MembershipPlan",
+      "description": "Subscription plans"
+    }
+  }
+}
